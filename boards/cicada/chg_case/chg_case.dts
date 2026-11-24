@@ -27,6 +27,29 @@
 		usb-flt-gpios = <&gpioa 4 GPIO_ACTIVE_HIGH>; // PIN 9, USB_FLT_N (0V = fault)
 		chg-en-gpios = <&gpiob 0 GPIO_ACTIVE_HIGH>; // PIN 15, EFUSE_CHG_EN (0V = disabled)
 		chg-flt-gpios = <&gpiob 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; // PIN 20, EFUSE_CHG_FLT (0V = fault)
+		io-channels = <&adc1 16>;                                       // PIN 17, PA12 = CHG_IMON
+	};
+};
+
+&adc1 {
+	clocks = <&rcc STM32_CLOCK(APB1_2, 20)>,
+		 <&rcc STM32_SRC_SYSCLK ADC_SEL(0)>;
+	clock-names = "adcx", "adc_ker";
+	pinctrl-0 = <&adc1_in16_pa12>;
+	pinctrl-names = "default";
+	st,adc-clock-source = "ASYNC";
+	st,adc-prescaler = <4>;
+	vref-mv = <3300>;                  /* VDDA = 3V3 rail */
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+
+	channel@10 {                       /* @10 hex = channel 16 */
+		reg = <16>;
+		zephyr,gain = "ADC_GAIN_1";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,resolution = <12>;
 	};
 };
 
@@ -53,14 +76,6 @@
 	apb1-prescaler = <1>;
 };
 
-/* 
-&usart1 {
-	pinctrl-0 = <&usart1_tx_pb6 &usart1_rx_pb7>;
-	pinctrl-names = "default";
-	current-speed = <115200>;
-	status = "okay";
-};
-*/
 
 &usart2 {
 	pinctrl-0 = <&usart2_tx_pa2 &usart2_rx_pa3>;

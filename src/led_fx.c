@@ -73,3 +73,4 @@ void bounce_run(struct bounce_cfg c)
 void update_color(struct led_rgb colors[static NUM_LEDS]){
 	led_strip_update_rgb(strip, colors, NUM_LEDS);
 }
+
