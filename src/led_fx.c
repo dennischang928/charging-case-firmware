@@ -12,8 +12,7 @@
 #include "led_fx.h"
 
 /* Tuning knobs */
-#define STRIP_NODE DT_NODELABEL(led_strip)
-#define NUM_LEDS   DT_PROP(STRIP_NODE, chain_length)
+
 #define SUB        50     /* position resolution: sub-steps per LED */
 #define WIDTH      120    /* glow radius in sub-steps (50 = 1 LED) */
 #define FRAME_MS   8      /* frame period; >280 µs needed for WS2812B latch */
@@ -71,6 +70,6 @@ void bounce_run(struct bounce_cfg c)
 	}
 }
 
-void update_color(struct led_rgb pixels[]){
-	led_strip_update_rgb(strip, pixels, NUM_LEDS);
+void update_color(struct led_rgb colors[static NUM_LEDS]){
+	led_strip_update_rgb(strip, colors, NUM_LEDS);
 }
