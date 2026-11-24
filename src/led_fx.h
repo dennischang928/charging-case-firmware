@@ -12,9 +12,15 @@ struct bounce_cfg {
 	uint16_t ms;               /* one-way trip time, default: 1000 */
 };
 
-void bounce_run(struct bounce_cfg c);
+
 
 int led_fx_init(void); // called once, 0 -> ok
+
+void bounce_run(struct bounce_cfg c);
+
+
+void update_color(struct led_rgb pixels[]);
+
 
 /* bounce();  bounce(.ease = ease_spring, .color = { .b = 255 }, .ms = 600); */
 #define bounce(...) bounce_run((struct bounce_cfg){ __VA_ARGS__ })

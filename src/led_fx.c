@@ -70,3 +70,7 @@ void bounce_run(struct bounce_cfg c)
 		}
 	}
 }
+
+void update_color(struct led_rgb pixels[]){
+	led_strip_update_rgb(strip, pixels, NUM_LEDS);
+}
