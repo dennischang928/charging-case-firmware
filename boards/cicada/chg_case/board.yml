@@ -1,0 +1,6 @@
+board:
+  name: chg_case
+  full_name: Charging Case STM32G030
+  vendor: DennisChang
+  socs:
+    - name: stm32g030xx

@@ -1,0 +1,2 @@
+config BOARD_CHG_CASE
+    select SOC_STM32G030XX
