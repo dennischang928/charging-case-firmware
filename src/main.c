@@ -10,7 +10,8 @@ int main(void)
 	}
 
 	while (1) {
-		bounce();                        /* accelerate / decelerate (default) */
+		// bounce();                        /* accelerate / decelerate (default) */
+		bounce(ease_spring);                        /* accelerate / decelerate (default) */
 	}
 }
 
