@@ -3,8 +3,8 @@
  * API in led_fx.h. Strip comes from devicetree node label `led_strip`
  * (worldsemi,ws2812-spi on SPI1, see boards/cicada/chg_case/chg_case.dts).
  *
- * Note: STM32G0 SPI1 hangs waiting for RXNE unless an SCK pin is assigned;
- * SCK is currently on PA1 (steals DEV_SENSE, unplug J2).
+ * Note: SPI1 runs half-duplex TX-only (duplex = <SPI_HALF_DUPLEX> in chg_case.dts).
+ * Full-duplex hangs waiting for RXNE because no SCK pin is assigned; PA1 stays DEV_SENSE.
  */
 #include <math.h>
 #include <stdlib.h>
